@@ -15,11 +15,80 @@
   <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
   <link rel="icon" href="images/favicon.png" />
 </head>
-<body>
+
+<body id="body" class="container-fluid">
+  <!----------------------- HEADER ---------------------------------->
+  <header>
+    <div class="new-game">
+      <div class="logo-new-game"><i type="button" class="icon-new-game bi bi-plus-circle"></i></div>
+      <div class="new-game-text">
+        <h4>NEW GAME</h4>
+      </div>
+    </div>
+  </header>
+  <!----------------------- Main ---------------------------------->
+  <main>
+    <div class="players">
+      <div class="player1-head">
+        <div class="player1-titre">
+          <h2 id="p1-text">PLAYER 1</h2>
+        </div>
+        <div id="dot-icon"><i class="bi bi-dot"></i></div>
+      </div>
+      <div id="player1" class="scores">
+        <div class="totalScore">0</div>
+        <div class="currentScore">
+          <p>CURRENT</p>
+          <p id="player1Current">0</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="dados">
+     
+      <div class="dados-img"><img id="dImg" class="border border-danger shadow-lg " style="width: 150px ;"
+          src="images/default.jpg" alt=""></div>
+      <div class="roll-hold">
+        <div class="new-game">
+          <div class="logo-new-game"><i id="roll" type="button" class="icon-new-game bi bi-arrow-repeat"></i></div>
+          <div class="new-game-text">
+            <h4>ROLL</h4>
+          </div>
+        </div>
+        <div class="new-game">
+          <div class="logo-new-game"><i id="hold" type="button"
+              class="icon-new-game bi bi-box-arrow-down"></i></div>
+          <div class="new-game-text">
+            <h4>HOLD</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="players">
+      <div class="player2-head">
+        <div id="dot-icon2"><i class="bi bi-dot"></i></div>
+        <div class="player2-titre">
+          <h2 id="p2-text">PLAYER 2</h2>
+        </div>
+      </div>
+      <div id="player2" class="scores">
+        <div class="totalScore">0</div>
+        <div class="currentScore">
+          <p>CURRENT</p>
+          <p id="player2Current">0</p>
+        </div>
+      </div>
+    </div>
 
 
-<script src="node_modules/jquery/dist/jquery.min.js"></script>
-<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="js/script.js"></script>
+  </main>
+
+  <footer></footer>
+
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
 </body>
+
 </html>
