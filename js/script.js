@@ -11,3 +11,18 @@ var player2Current = document.getElementById('player2')
 var rollAudio = document.getElementById('roll-audio')
 var loseAudio = document.getElementById('lose-audio')
 var holdAudio = document.getElementById('hold-fx')
+
+
+
+class Player {
+  constructor(name, currentScore, totalScore, tour) {
+    this.name = name
+    this.currentScore = currentScore
+    this.totalScore = totalScore
+    this.tour = tour
+  }
+}
+
+let player1 = new Player('player1', 0, 0, false)
+let player2 = new Player('player2', 0, 0, false)
+let players = [player1, player2]
