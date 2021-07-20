@@ -35,6 +35,13 @@ let player1 = new Player('player1', 0, 0, false)
 let player2 = new Player('player2', 0, 0, false)
 let players = [player1, player2]
 
+//Définir début de partie
+let gameTour = 0
+
+// Variable qui présent le joueur courant
+let player;
+
+
 // function Debounce 
 function debounce(callback, delay) {
   var timer;
@@ -65,6 +72,29 @@ rollBtn.addEventListener('click', debounce(function () {
     break; case 5: dImg.src = 'images/5.jpg'; 
     break; case 6: dImg.src = 'images/6.jpg'; 
     break;
+  }
+
+  if (gameTour == 0) {
+    players[0].tour = true
+    player = players[0]
+    player.currentScore += nbrRand
+    var currentScoreArea = document.getElementById(players[0].name).childNodes[3].childNodes[3]
+
+    if (nbrRand == 1) {
+      setTimeout(() => {
+        dImg.src = 'images/default.jpg'
+      }, 500);
+      rollAudio.pause()
+      loseAudio.pause()
+      loseAudio.play()
+      currentScoreArea.textContent = 0
+      player.currentScore = 0
+      player.tour = false
+      players.reverse()
+      players[0].tour = true
+
+    }
+    currentScoreArea.textContent = players[0].currentScore
   }
 
 
