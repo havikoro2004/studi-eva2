@@ -34,3 +34,29 @@ class Player {
 let player1 = new Player('player1', 0, 0, false)
 let player2 = new Player('player2', 0, 0, false)
 let players = [player1, player2]
+
+
+// Ajouter evenement au click sur le btn Roll
+
+rollBtn.addEventListener('click', function () {
+
+  rollAudio.play()
+
+  let nbrRand = rand(1, 7)
+
+  switch (nbrRand) {
+    case 1: dImg.src = 'images/1.jpg';
+    break; 
+    case 2: dImg.src = 'images/2.jpg';
+    break; 
+    case 3: dImg.src = 'images/3.jpg'; 
+    break; case 4: dImg.src = 'images/4.jpg'; 
+    break; case 5: dImg.src = 'images/5.jpg'; 
+    break; case 6: dImg.src = 'images/6.jpg'; 
+    break;
+  }
+
+})
+
+
+
