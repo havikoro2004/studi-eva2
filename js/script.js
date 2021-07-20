@@ -35,13 +35,24 @@ let player1 = new Player('player1', 0, 0, false)
 let player2 = new Player('player2', 0, 0, false)
 let players = [player1, player2]
 
-
+// function Debounce 
+function debounce(callback, delay) {
+  var timer;
+  return function () {
+    var args = arguments;
+    var context = this;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      callback.apply(context, args);
+    }, delay)
+  }
+}
 // Ajouter evenement au click sur le btn Roll
 
-rollBtn.addEventListener('click', function () {
+rollBtn.addEventListener('click', debounce(function () {
 
   rollAudio.play()
-
+  
   let nbrRand = rand(1, 7)
 
   switch (nbrRand) {
@@ -56,7 +67,12 @@ rollBtn.addEventListener('click', function () {
     break;
   }
 
-})
+
+
+
+
+
+}, 400))
 
 
 
