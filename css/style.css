@@ -2,6 +2,7 @@
 
 html , body {
   font-family: 'Lato', sans-serif;
+ 
   display: grid;
   height: 100%;
   justify-content: center;
@@ -12,6 +13,10 @@ html , body {
     "main"
     "footer"
   ;
+}
+
+#body {
+   background: linear-gradient(90deg, #edf1f1 50%, white 50%);
 }
 
 h4 , h2 , h1 ,h3 {
@@ -63,6 +68,7 @@ main {
 #dot-icon {
   grid-area: dot-icon;
   justify-self: start;
+  color: red;
 }
 #dot-icon2 {
   grid-area: dot-icon2;

@@ -19,8 +19,14 @@
 <body id="body" class="container-fluid">
   <!----------------------- HEADER ---------------------------------->
   <header>
+    <!----------------------- Sounds-FX ---------------------------------->
+    <audio id="new-fx" src="js/sound_fx/new.wav"></audio>
+    <audio id="lose-fx" src="js/sound_fx/lose.wav"></audio>
+    <audio id="roll-fx" src="js/sound_fx/roll.wav"></audio>
+    <audio id="hold-fx" src="js/sound_fx/hold.wav"></audio>
+    <audio id="win-fx" src="js/sound_fx/win.wav"></audio>
     <div class="new-game">
-      <div class="logo-new-game"><i id="new" type="button" class="icon-new-game bi bi-plus-circle"></i><audio id="new-audio" src="js/sound_fx/new.wav"></audio></div>
+      <div class="logo-new-game"><i id="new" type="button" class="icon-new-game bi bi-plus-circle"></i></div>
       <div class="new-game-text">
         <h4>NEW GAME</h4>
       </div>
@@ -37,7 +43,7 @@
       </div>
       <div id="player1" class="scores">
         <div class="totalScore">0</div>
-        <div class="currentScore">
+        <div id="current1" class="currentScore">
           <p>CURRENT</p>
           <p id="player1Current">0</p>
         </div>
@@ -45,18 +51,17 @@
     </div>
 
     <div class="dados">
-      <audio id="lose-audio" src="js/sound_fx/lose.wav"></audio>
       <div class="dados-img"><img id="dImg" class="border border-danger shadow-lg " style="width: 150px ;"
           src="images/default.jpg" alt=""></div>
-      <div class="roll-hold">
+      <div id="rollHold" class="roll-hold">
         <div class="new-game">
           <div class="logo-new-game"><i id="roll" type="button" class="icon-new-game bi bi-arrow-repeat"></i></div>
-          <div class="new-game-text"><audio id="roll-audio" src="js/sound_fx/roll.wav"></audio>
+          <div class="new-game-text">
             <h4>ROLL</h4>
           </div>
         </div>
         <div class="new-game">
-          <div class="logo-new-game"><audio id="hold-fx" src="js/sound_fx/hold.wav"></audio><i id="hold" type="button"
+          <div class="logo-new-game"><i id="hold" type="button"
               class="icon-new-game bi bi-box-arrow-down"></i></div>
           <div class="new-game-text">
             <h4>HOLD</h4>
@@ -74,7 +79,7 @@
       </div>
       <div id="player2" class="scores">
         <div class="totalScore">0</div>
-        <div class="currentScore">
+        <div id="current2" class="currentScore">
           <p>CURRENT</p>
           <p id="player2Current">0</p>
         </div>
