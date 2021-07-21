@@ -97,7 +97,20 @@ rollBtn.addEventListener('click', debounce(function () {
     currentScoreArea.textContent = players[0].currentScore
   }
 
+  if (player1.tour == true) {
+    body.style.background = 'linear-gradient(90deg, #edf1f1 50%, white 50%)'
+    dotIcon2.style.color = 'white'
+    dotIcon1.style.color = 'red'
+    player1Titre.style.fontWeight = 'bolder'
+    player2Titre.style.fontWeight = 'normal'
 
+  } else {
+    body.style.background = 'linear-gradient(90deg, white 50%, #edf1f1 50%)'
+    dotIcon2.style.color = 'red'
+    dotIcon1.style.color = 'white'
+    player2Titre.style.fontWeight = 'bolder'
+    player1Titre.style.fontWeight = 'normal'
+  }
 
 
 
