@@ -112,10 +112,19 @@ rollBtn.addEventListener('click', debounce(function () {
     player1Titre.style.fontWeight = 'normal'
   }
 
-
-
-
 }, 400))
 
+// Boutton HOLD 
+holdBtn.addEventListener('click', debounce(function () {
+  holdAudio.play()
+  let total = document.getElementById(players[0].name).childNodes[1]
+  player.totalScore += player.currentScore
+  total.textContent = player.totalScore
+  player.currentScore = 0
+  document.getElementById(players[0].name).childNodes[3].childNodes[3].textContent = player.currentScore
+  player.tour = false
+  players.reverse()
+  players[0].tour = true
 
+}, 400))
 
