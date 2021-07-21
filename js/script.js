@@ -13,6 +13,8 @@ var player2Current = document.getElementById('player2')
 var rollAudio = document.getElementById('roll-audio')
 var loseAudio = document.getElementById('lose-audio')
 var holdAudio = document.getElementById('hold-fx')
+var newAudio = document.getElementById('new-audio')
+var newGame =  document.getElementById('new')
 
 //Création d'une fonction rand() qui génére un nombre entre 1 et 6 
 function rand(min, max) {
@@ -54,6 +56,25 @@ function debounce(callback, delay) {
     }, delay)
   }
 }
+
+// function ChangeBackgroundColor
+
+function changeBgColor (){
+  if (player1.tour == true) {
+    body.style.background = 'linear-gradient(90deg, #edf1f1 50%, white 50%)'
+    dotIcon2.style.color = 'white'
+    dotIcon1.style.color = 'red'
+    player1Titre.style.fontWeight = 'bolder'
+    player2Titre.style.fontWeight = 'normal'
+
+  } else {
+    body.style.background = 'linear-gradient(90deg, white 50%, #edf1f1 50%)'
+    dotIcon2.style.color = 'red'
+    dotIcon1.style.color = 'white'
+    player2Titre.style.fontWeight = 'bolder'
+    player1Titre.style.fontWeight = 'normal'
+  }
+}
 // Ajouter evenement au click sur le btn Roll
 
 rollBtn.addEventListener('click', debounce(function () {
@@ -79,7 +100,7 @@ rollBtn.addEventListener('click', debounce(function () {
     player = players[0]
     player.currentScore += nbrRand
     var currentScoreArea = document.getElementById(players[0].name).childNodes[3].childNodes[3]
-
+    
     if (nbrRand == 1) {
       setTimeout(() => {
         dImg.src = 'images/default.jpg'
@@ -97,26 +118,16 @@ rollBtn.addEventListener('click', debounce(function () {
     currentScoreArea.textContent = players[0].currentScore
   }
 
-  if (player1.tour == true) {
-    body.style.background = 'linear-gradient(90deg, #edf1f1 50%, white 50%)'
-    dotIcon2.style.color = 'white'
-    dotIcon1.style.color = 'red'
-    player1Titre.style.fontWeight = 'bolder'
-    player2Titre.style.fontWeight = 'normal'
-
-  } else {
-    body.style.background = 'linear-gradient(90deg, white 50%, #edf1f1 50%)'
-    dotIcon2.style.color = 'red'
-    dotIcon1.style.color = 'white'
-    player2Titre.style.fontWeight = 'bolder'
-    player1Titre.style.fontWeight = 'normal'
-  }
+  changeBgColor()
 
 }, 400))
 
 // Boutton HOLD 
 holdBtn.addEventListener('click', debounce(function () {
   holdAudio.play()
+  setTimeout(() => {
+    dImg.src = 'images/default.jpg'
+  }, 500);
   let total = document.getElementById(players[0].name).childNodes[1]
   player.totalScore += player.currentScore
   total.textContent = player.totalScore
@@ -125,6 +136,14 @@ holdBtn.addEventListener('click', debounce(function () {
   player.tour = false
   players.reverse()
   players[0].tour = true
+  changeBgColor()
 
 }, 400))
 
+// New game
+newGame.addEventListener('click' , ()=>{
+  newAudio.play()
+  setInterval(() => {
+    location.reload() 
+  }, 500);
+})
