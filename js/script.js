@@ -64,6 +64,7 @@ if (gameTour==0) {
   if (nbrRand==1) {
     setTimeout(() => {
       dImg.src = 'images/default.jpg'
+      currentPlayerCss()
     }, 500);
     players[0].currentScore = 0
     currentPlayer.tour = false
@@ -72,9 +73,9 @@ if (gameTour==0) {
     console.log(players);
     displayCurrentScore()
   }
-
-
 }
+//roll event
+rollBtn.addEventListener('click', roll)
 
 //Hold fonction
 function hold (){
@@ -87,30 +88,9 @@ function hold (){
   displayTotalScore()
   currentPlayerCss()
 }
-// Hold boutton 
+// Hold event 
 holdBtn.addEventListener('click' , hold)
-rollBtn.addEventListener('click' , roll)
 
-// New Game boutton 
-newGame.addEventListener('click' , newFunction)
-
-// function reset 
-function newFunction() {
-  for (player of players) {
-    player.currentScore = 0
-    player.totalScore = 0
-    player.tour=false
-  }
-  players[0].tour = true
-  currentPlayer = player1
-  currentPlayer = players[0]
-  displayTotalScore()
-  displayCurrentScore()
-  resetCss()
-  roll
-  
-  
-}
 //function affichage current scores 
 function displayCurrentScore() {
   if (currentPlayer = player1) {
@@ -148,14 +128,26 @@ function currentPlayerCss () {
     playerTitre2.style.fontWeight='bolder'
     playerTitre1.style.fontWeight = 'normal'
   }
-  
 }
 
-// reset Css
-function resetCss() {
+// Reset boutton 
+newGame.addEventListener('click', newFunction)
+
+// Reset function
+function newFunction() {
+  dImg.src = 'images/default.jpg'
   body.style.background = 'white'
   redDot2.style.opacity = '0'
   redDot1.style.opacity = '0'
   playerTitre2.style.fontWeight = 'normal'
   playerTitre1.style.fontWeight = 'normal'
+  player1 = new Players('player1', 0, 0, false)
+  player2 = new Players('player2', 0, 0, false)
+  players = [player1, player2]
+  gameTour==0
+  for (i = 0; i < 2; i++) {
+    scores[i].childNodes[3].childNodes[3].textContent = players[i].currentScore
+    scores[i].childNodes[1].textContent = players[i].totalScore
+  }
+  console.log(players);
 }
