@@ -93,7 +93,7 @@ function hold (){
   players[0].totalScore+=players[0].currentScore
   players[0].currentScore=0
   players[0].tour = false
-  if (players[0].totalScore>=6) {
+  if (players[0].totalScore>=100) {
     holdFx.pause()
     generateFx(winFx)
     body.style.background = 'white'
