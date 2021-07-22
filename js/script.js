@@ -12,9 +12,15 @@ var redDot1 = document.getElementById('dot-icon')
 var redDot2 = document.getElementById('dot-icon2')
 var playerTitre1 = document.getElementById('p1-text')
 var playerTitre2 = document.getElementById('p2-text')
+var newFx = document.getElementById('new-fx')
+var rollFx = document.getElementById('roll-fx')
+var holdFx = document.getElementById('hold-fx')
+var winFx = document.getElementById('win-fx')
+var loseFx = document.getElementById('lose-fx')
+var msg = () => { alert('La partie est terminée \rCliquer sur New Game pour faire une nouvelle partie') }
 
 class Players {
-  constructor(name , currentScore , totalScore , tour){
+  constructor(name , currentScore , totalScore , tour ,winner){
     this.name = name
     this.currentScore = currentScore
     this.totalScore = totalScore
@@ -23,65 +29,88 @@ class Players {
   }
 }
 
-var player1 = new Players('player1', 0, 0, false)
-var player2 = new Players('player2', 0, 0, false)
+var player1 = new Players('player1', 0, 0, false,false)
+var player2 = new Players('player2', 0, 0, false,false)
 var players = [player1, player2]
+
 
 // Commencer la partie 
 let gameTour = 0
+
 // définir le joueur courant
 let currentPlayer
 
 // roll boutton function
-
 function roll() {
+  setTimeout(() => {
+    var nbrRand = rand(1, 7)
+    holdFx.pause()
+    rollFx.play()
+    switch (nbrRand) {
+      case 1: dImg.src = 'images/1.jpg';
+        break;
+      case 2: dImg.src = 'images/2.jpg';
+        break;
+      case 3: dImg.src = 'images/3.jpg';
+        break;
+      case 4: dImg.src = 'images/4.jpg';
+        break;
+      case 5: dImg.src = 'images/5.jpg';
+        break;
+      case 6: dImg.src = 'images/6.jpg';
+        break;
+    }
 
-var nbrRand = rand(1,7)
-
-  switch (nbrRand) {
-    case 1: dImg.src = 'images/1.jpg'; 
-      break; 
-    case 2: dImg.src = 'images/2.jpg'; 
-      break;
-    case 3: dImg.src = 'images/3.jpg'; 
-      break; 
-    case 4: dImg.src = 'images/4.jpg'; 
-      break;
-    case 5: dImg.src = 'images/5.jpg'; 
-      break;
-    case 6: dImg.src = 'images/6.jpg'; 
-      break;
-  }
-
-if (gameTour==0) {
-  players[0].tour = true
-  currentPlayer = players[0]
-  currentPlayer.currentScore+=nbrRand
-  displayCurrentScore()
-  currentPlayerCss()
-}
-  
-  if (nbrRand==1) {
-    setTimeout(() => {
-      dImg.src = 'images/default.jpg'
+    if (gameTour == 0) {
+      players[0].tour = true
+      currentPlayer = players[0]
+      currentPlayer.currentScore += nbrRand
+      displayCurrentScore()
       currentPlayerCss()
-    }, 500);
-    players[0].currentScore = 0
-    currentPlayer.tour = false
-    players.reverse()
-    players[0].tour=true
-    console.log(players);
-    displayCurrentScore()
-  }
+    }
+
+    if (nbrRand == 1) {
+      rollFx.pause()
+      loseFx.play()
+      setTimeout(() => {
+        dImg.src = 'images/default.jpg'
+        currentPlayerCss()
+      }, 500);
+      players[0].currentScore = 0
+      currentPlayer.tour = false
+      players.reverse()
+      players[0].tour = true
+      console.log(players);
+      displayCurrentScore()
+    }
+  }, 400);
 }
 //roll event
 rollBtn.addEventListener('click', roll)
 
 //Hold fonction
 function hold (){
+  rollFx.pause()
+  holdFx.play()
   players[0].totalScore+=players[0].currentScore
   players[0].currentScore=0
   players[0].tour = false
+  if (players[0].totalScore>=6) {
+    holdFx.pause()
+    winFx.play()
+    body.style.background = 'white'
+    players[0].winner=true
+    holdBtn.removeEventListener('click' , hold)
+    rollBtn.removeEventListener('click',roll)
+    holdBtn.addEventListener('click' , msg)
+    rollBtn.addEventListener('click', msg)
+    if (players[0]==player1) {
+      dImg.src = 'images/win1.jpg'
+    } else {
+      dImg.src = 'images/win2.jpg'
+    }
+    
+  }
   displayCurrentScore()
   players.reverse()
   players[0].tour = true
@@ -135,19 +164,25 @@ newGame.addEventListener('click', newFunction)
 
 // Reset function
 function newFunction() {
+  winFx.pause()
+  newFx.play()
+  holdBtn.removeEventListener('click', msg)
+  rollBtn.removeEventListener('click', msg)
+  holdBtn.addEventListener('click' , hold)
+  rollBtn.addEventListener('click' , roll)
   dImg.src = 'images/default.jpg'
   body.style.background = 'white'
   redDot2.style.opacity = '0'
   redDot1.style.opacity = '0'
   playerTitre2.style.fontWeight = 'normal'
   playerTitre1.style.fontWeight = 'normal'
-  player1 = new Players('player1', 0, 0, false)
-  player2 = new Players('player2', 0, 0, false)
+  player1 = new Players('player1', 0, 0, false,false)
+  player2 = new Players('player2', 0, 0, false,false)
   players = [player1, player2]
   gameTour==0
   for (i = 0; i < 2; i++) {
     scores[i].childNodes[3].childNodes[3].textContent = players[i].currentScore
     scores[i].childNodes[1].textContent = players[i].totalScore
   }
-  console.log(players);
+
 }
