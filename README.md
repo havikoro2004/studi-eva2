@@ -6,6 +6,6 @@
   * bootstrap icones 
   
   
-* Ces frameworks sont installés via Npm
+* Ces frameworks sont installés via Npm dont faut avoir Node.js installé !!
 * Pour importer les framworks utilisés utiliser la commande npm update 
 
