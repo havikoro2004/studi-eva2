@@ -2,10 +2,10 @@
 * Le site est une application d'un jeu multi Dé.
 * Le répertoire racine du site inclut :
   * bootstrap avec ses fichiers CSS & Js.
-  * jQuery 
   * bootstrap icones 
+  * jQuery 
+ 
   
-  
-* Ces frameworks sont installés via Npm dont faut avoir Node.js installé !!
-* Pour importer les framworks utilisés utiliser la commande npm update 
+* Les frameworks & librairies sont installés via Npm.
+* Pour importer les framworks & librairies utiliser la commande npm update 
 
