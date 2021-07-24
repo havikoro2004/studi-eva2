@@ -4,4 +4,4 @@ Disallow: /nogooglebot/
 User-agent: *
 Allow: /
 
-Sitemap: http://www.debuter2zero.fr/sitemap.xml
+Sitemap: https://debuter2zero.com/sitemap.xml
