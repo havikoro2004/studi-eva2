@@ -30,7 +30,6 @@ var player1 = new Players('player1', 0, 0, false,false)
 var player2 = new Players('player2', 0, 0, false,false)
 var players = [player1, player2]
 
-
 // Variable qui initialise la partie 
 let gameTour = 0
 
@@ -84,22 +83,22 @@ var roll = debounce(function (e) {
 rollBtn.addEventListener('click', roll)
 
 //Hold fonction
-function hold (){
+var hold = debounce (function (e){
   dImg.src = 'images/default.jpg';
   generateFx(holdFx)
-  players[0].totalScore+=players[0].currentScore
-  players[0].currentScore=0
+  players[0].totalScore += players[0].currentScore
+  players[0].currentScore = 0
   players[0].tour = false
-  if (players[0].totalScore>=100) {
+  if (players[0].totalScore >= 100) {
     holdFx.pause()
     generateFx(winFx)
     body.style.background = 'white'
-    players[0].winner=true
-    holdBtn.removeEventListener('click' , hold)
-    rollBtn.removeEventListener('click',roll)
-    holdBtn.addEventListener('click' , msg)
+    players[0].winner = true
+    holdBtn.removeEventListener('click', hold)
+    rollBtn.removeEventListener('click', roll)
+    holdBtn.addEventListener('click', msg)
     rollBtn.addEventListener('click', msg)
-    if (players[0]==player1) {
+    if (players[0] == player1) {
       dImg.src = 'images/win1.jpg'
     } else {
       dImg.src = 'images/win2.jpg'
@@ -110,7 +109,7 @@ function hold (){
   players[0].tour = true
   displayTotalScore()
   currentPlayerCss()
-}
+},200)
 // Hold event 
 holdBtn.addEventListener('click', hold)
 
