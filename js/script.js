@@ -37,55 +37,52 @@ let gameTour = 0
 // définir le joueur courant
 let currentPlayer
 
-//roll event
+// Function de l'evenement Roll Boutton
+var roll = debounce(function (e) {
+  var nbrRand = rand(1, 7)
+  generateFx(rollFx)
+  switch (nbrRand) {
+    case 1: dImg.src = 'images/1.jpg';
+      break;
+    case 2: dImg.src = 'images/2.jpg';
+      break;
+    case 3: dImg.src = 'images/3.jpg';
+      break;
+    case 4: dImg.src = 'images/4.jpg';
+      break;
+    case 5: dImg.src = 'images/5.jpg';
+      break;
+    case 6: dImg.src = 'images/6.jpg';
+      break;
+  }
+
+  if (gameTour == 0) {
+    players[0].tour = true
+    currentPlayer = players[0]
+    currentPlayer.currentScore += nbrRand
+    displayCurrentScore()
+    currentPlayerCss()
+  }
+
+  if (nbrRand == 1) {
+    generateFx(loseFx)
+    setTimeout(() => {
+      dImg.src = 'images/default.jpg'
+      currentPlayerCss()
+    }, 500);
+    players[0].currentScore = 0
+    currentPlayer.tour = false
+    players.reverse()
+    players[0].tour = true
+    console.log(players);
+    displayCurrentScore()
+  }
+
+}, 500)
+
+// Roll event 
 rollBtn.addEventListener('click', roll)
 
-// roll boutton function
-function roll() {
-  setTimeout(() => {
-    var nbrRand = rand(1, 7)
-    generateFx(rollFx)
-    switch (nbrRand) {
-      case 1: dImg.src = 'images/1.jpg';
-        break;
-      case 2: dImg.src = 'images/2.jpg';
-        break;
-      case 3: dImg.src = 'images/3.jpg';
-        break;
-      case 4: dImg.src = 'images/4.jpg';
-        break;
-      case 5: dImg.src = 'images/5.jpg';
-        break;
-      case 6: dImg.src = 'images/6.jpg';
-        break;
-    }
-
-    if (gameTour == 0) {
-      players[0].tour = true
-      currentPlayer = players[0]
-      currentPlayer.currentScore += nbrRand
-      displayCurrentScore()
-      currentPlayerCss()
-    }
-
-    if (nbrRand == 1) {
-      generateFx(loseFx)
-      setTimeout(() => {
-        dImg.src = 'images/default.jpg'
-        currentPlayerCss()
-      }, 500);
-      players[0].currentScore = 0
-      currentPlayer.tour = false
-      players.reverse()
-      players[0].tour = true
-      console.log(players);
-      displayCurrentScore()
-    }
-  }, 400);
-}
-
-// Hold event 
-holdBtn.addEventListener('click', hold)
 //Hold fonction
 function hold (){
   dImg.src = 'images/default.jpg';
@@ -107,7 +104,6 @@ function hold (){
     } else {
       dImg.src = 'images/win2.jpg'
     }
-    
   }
   displayCurrentScore()
   players.reverse()
@@ -115,6 +111,9 @@ function hold (){
   displayTotalScore()
   currentPlayerCss()
 }
+// Hold event 
+holdBtn.addEventListener('click', hold)
+
 //function affichage current scores 
 function displayCurrentScore() {
   if (currentPlayer = player1) {
@@ -124,9 +123,6 @@ function displayCurrentScore() {
     scores[1].childNodes[3].childNodes[3].textContent = currentPlayer.currentScore
   }
 }
-// Reset event 
-newGame.addEventListener('click', newFunction)
-
 // Reset function
 function newFunction() {
   generateFx(newFx)
@@ -148,8 +144,9 @@ function newFunction() {
     scores[i].childNodes[3].childNodes[3].textContent = players[i].currentScore
     scores[i].childNodes[1].textContent = players[i].totalScore
   }
-
 }
+// Reset event 
+newGame.addEventListener('click', newFunction)
 
 /*...........................................Functions utlisées.........................................//
 ...........................................................................................................*/
@@ -168,7 +165,18 @@ function displayTotalScore() {
     scores[1].childNodes[1].textContent = currentPlayer.totalScore
   }
 }
-
+// Function debounce
+function debounce(callback, delay) {
+  var timer;
+  return function () {
+    var args = arguments;
+    var context = this;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      callback.apply(context, args);
+    }, delay)
+  }
+}
 // Function currentPlayer Css 
 function currentPlayerCss() {
   if (players[0] == player1) {
