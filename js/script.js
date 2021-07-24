@@ -189,6 +189,7 @@ function currentPlayerCss() {
 }
 // Function fx sound boutton
 function generateFx(fx) {
+  fx.volume=0.3
   if (fx.paused) { fx.currentTime = 0; fx.play() }
   else fx.pause();
 }
