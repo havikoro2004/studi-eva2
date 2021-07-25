@@ -64,6 +64,7 @@ var roll = debounce(function (e) {
   }
 
   if (nbrRand == 1) {
+    rollFx.pause()
     generateFx(loseFx)
     setTimeout(() => {
       dImg.src = 'images/default.jpg'
