@@ -8,4 +8,5 @@
   
 * Les frameworks & librairies sont installés via Npm.
 * Pour importer les framworks & librairies utiliser la commande npm update 
+* Pour voir la demo de l'application www.studi2.flata-tech.com/
 
