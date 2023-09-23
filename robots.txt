@@ -4,4 +4,4 @@ Disallow: /nogooglebot/
 User-agent: *
 Allow: /
 
-Sitemap: https://debuter2zero.com/sitemap.xml
+Sitemap: http://studi2.flata-tech.com/sitemap.xml
